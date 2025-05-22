@@ -45,7 +45,10 @@ ENDIF()
 
 # Configure!
 # Common sources go here
-set(SERVER_SOURCE_FILES mains.c)
+set(SERVER_SOURCE_FILES mains.c
+    src/util/io.c
+    src/util/kvfile.c
+    src/util/config.c)
 set(LIB_SOURCE_FILES 	mainl.c)
 set(CLIENT_SOURCE_FILES mainc.c)
 

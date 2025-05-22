@@ -6,6 +6,6 @@
 /*
     Startup the server.
 */
-bool SERVER_start();
+i32 SERVER_start(  );
 
 #endif // SERVER_H

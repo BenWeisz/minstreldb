@@ -7,7 +7,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 
-bool SERVER_start()
+i32 SERVER_start()
 {
 	struct addrinfo setup_info;
 	memset(&setup_info, 0, sizeof(struct addrinfo));
