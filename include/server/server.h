@@ -6,6 +6,6 @@
 /*
     Startup the server.
 */
-i32 SERVER_start(  );
+i32 SERVER_start( const char* port );
 
 #endif // SERVER_H

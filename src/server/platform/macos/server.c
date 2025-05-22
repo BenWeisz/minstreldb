@@ -1,4 +1,5 @@
 #include "server/server.h"
+#include "util/config.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -7,7 +8,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 
-i32 SERVER_start()
+i32 SERVER_start( const char* port )
 {
 	struct addrinfo setup_info;
 	memset(&setup_info, 0, sizeof(struct addrinfo));
@@ -16,12 +17,14 @@ i32 SERVER_start()
 	setup_info.ai_flags = AI_PASSIVE;
 
 	struct addrinfo* connection_infos = NULL;
-	int status = getaddrinfo(NULL, "3490", &setup_info, &connection_infos);
+	int status = getaddrinfo(NULL, port, &setup_info, &connection_infos);
 	if (status != 0)
 	{
 		printf("getaddrinfo error: %s\n", gai_strerror(status));
 		return false;
 	}
+
+	
 
 	freeaddrinfo(connection_infos);
 

@@ -9,7 +9,7 @@
 
 extern KVFILE* config;
 
-u32 CONFIG_load( const char* path );
-void CONFIG_cleanup();
+KVFILE* CONFIG_load( const char* path );
+void CONFIG_cleanup( KVFILE* config );
 
 #endif // CONFIG_H

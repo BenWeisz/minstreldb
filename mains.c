@@ -9,19 +9,26 @@
 int main()
 {
 	// Load the config file
-	u32 r = CONFIG_load( RESOURCE( "config.txt" ) );
-	if ( r == 0 )
+	KVFILE* config = CONFIG_load( RESOURCE( "config.txt" ) );
+	if ( config == NULL )
 	{
 		LOG_ERROR( "CONFIG_load\n" );
 		return 1;
 	}
 
-    printf("Starting server...\n");
+	const char* port = KVFILE_get( config, "PORT" );
+    LOG_PRINT("Starting server...\n");
+	LOG_PRINT( "PORT: %s\n", port );
 
-	SERVER_start();
+	i32 r = SERVER_start( port );
+	if ( r == -1 )
+	{
+		LOG_ERROR( "SERVER_start\n" );
+		LOG_PRINT( "Shutting down...\n" );
+	}
 
 	// Clean up config file
-	CONFIG_cleanup();
+	CONFIG_cleanup( config );
 
 	return 0;
 }
